@@ -1,21 +1,36 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 dependencies {
-  compile project(":switchicon")
-  compile 'com.android.support:appcompat-v7:25.1.0'
+    implementation project(":switchicon")
+    implementation "androidx.appcompat:appcompat:$supportLibVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion "25.0.2"
+    namespace 'com.github.zagum.switchicon.sample'
 
-  defaultConfig {
-    applicationId "com.github.zagum.switchicon.sample"
-    minSdkVersion 15
-    targetSdkVersion 25
-    versionCode 1
-    versionName "1.0"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
-    vectorDrawables.useSupportLibrary = true
-  }
+    defaultConfig {
+        applicationId "com.github.zagum.switchicon.sample"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        vectorDrawables.useSupportLibrary = true
+    }
+    compileOptions {
+        sourceCompatibility 17
+        targetCompatibility 17
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig = true
+    }
+}
+repositories {
+    mavenCentral()
 }

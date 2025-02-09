@@ -1,14 +1,28 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 dependencies {
-  compile 'com.android.support:appcompat-v7:25.1.0'
+    implementation "androidx.appcompat:appcompat:$supportLibVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion "25.0.2"
+    namespace 'com.github.zagum.switchicon'
 
-  defaultConfig {
-    minSdkVersion 15
-  }
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+    }
+    compileOptions {
+        sourceCompatibility 17
+        targetCompatibility 17
+    }
+    buildFeatures {
+        buildConfig = true
+    }
+}
+repositories {
+    mavenCentral()
 }
